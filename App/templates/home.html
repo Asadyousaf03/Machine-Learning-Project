@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<video autoplay muted loop>
+    <source src="{{ url_for('static', filename='video.mp4')}}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="login">
+    <h1>Intrusion Detection</h1>
+    <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Duration</label>
+            <input class="form-control" type="number" name="duration" placeholder="Enter the duration"  value="0" required />
+            
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Protocol Type</label>
+            <select class="form-control" name="protocol_type" placeholder="Enter the protocol type" required>
+                <option class="placeholder" selected disabled value="">Select protocol type</option>
+                <option value="icmp">icmp</option>
+                <option value="tcp">tcp</option>
+                <option value="udp">udp</option>
+            </select>
+        </div> 
+        
+        <div class="mb-3">
+            <label class="form-label">Service Type</label>
+            <select class="form-control" name="service_type" placeholder="Enter the service type" required>
+                <option class="placeholder" selected disabled value="">Service Type</option>
+                <option value="ftp_data">ftp_data</option>
+                <option value="rje">rje</option>
+                <option value="time">time</option>
+                <option value="mtp">mtp</option>
+                <option value="link">link</option>
+                <option value="remote_job">remote_job</option>
+                <option value="gopher">gopher</option>
+                <option value="ssh">ssh</option>
+                <option value="name">name</option>
+                <option value="whois">whois</option>
+                <option value="domain">domain</option>
+                <option value="login">login</option>
+                <option value="imap4">imap4</option>
+                <option value="daytime">daytime</option>
+                <option value="ctf">ctf</option>
+                <option value="nntp">nntp</option>
+                <option value="shell">shell</option>
+                <option value="IRC">IRC</option>
+                <option value="nnsp">nnsp</option>
+                <option value="http_443">http_443</option>
+                <option value="exec">exec</option>
+                <option value="printer">printer</option>
+                <option value="efs">efs</option>
+                <option value="courier">courier</option>
+                <option value="uucp">uucp</option>
+                <option value="klogin">klogin</option>
+                <option value="kshell">kshell</option>
+                <option value="echo">echo</option>
+                <option value="discard">discard</option>
+                <option value="systat">systat</option>
+                <option value="supdup">supdup</option>
+                <option value="iso_tsap">iso_tsap</option>
+                <option value="hostnames">hostnames</option>
+                <option value="csnet_ns">csnet_ns</option>
+                <option value="pop_2">pop_2</option>
+                <option value="sunrpc">sunrpc</option>
+                <option value="uucp_path">uucp_path</option>
+                <option value="netbios_ns">netbios_ns</option>
+                <option value="netbios_ssn">netbios_ssn</option>
+                <option value="netbios_dgm">netbios_dgm</option>
+                <option value="sql_net">sql_net</option>
+                <option value="vmnet">vmnet</option>
+                <option value="bgp">bgp</option>
+                <option value="Z39_50">Z39_50</option>
+                <option value="ldap">ldap</option>
+                <option value="netstat">netstat</option>
+                <option value="urh_i">urh_i</option>
+                <option value="X11">X11</option>
+                <option value="urp_i">urp_i</option>
+                <option value="pm_dump">pm_dump</option>
+                <option value="telnet">telnet</option>
+
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Flag Type</label>
+            <select class="form-control" name="flag_type" placeholder="Enter the flag type" required>
+                <option class="placeholder" selected disabled value="">Select flag type</option>
+                <option value="SF">SF</option>
+                <option value="S0">S0</option>
+                <option value="REJ">REJ</option>
+                <option value="RSTR">RSTR</option>
+                <option value="RSTO">RSTO</option>
+                <option value="SH">SH</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="RSTOS0">RSTOS0</option>
+                <option value="S3">S3</option>
+                <option value="OTH">OTH</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Source Bytes</label>
+            <input class="form-control" type="number" name="src_bytes" placeholder="Enter source bytes" value="0" required />
+           
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Destination Bytes</label>
+            <input class="form-control" type="number" name="dst_bytes" placeholder="Enter destination bytes"  value="0" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Land</label>
+            <input class="form-control" type="number" name="land" placeholder="Enter land value" value="0" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Wrong Fragment</label>
+            <input class="form-control" type="number" name="wrong_fragment" placeholder="Enter wrong fragment value" value="0" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Urgent</label>
+            <input class="form-control" type="text" name="urgent" placeholder="Value of urgent" value="0" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Hot</label>
+            <input class="form-control" type="number" name="hot" placeholder="Enter your Hot Score" min='0' max='100' value="0" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Num Failed Logins</label>
+            <input class="form-control" type="number" name="num_failed_logins" placeholder="Enter your Num Failed Logins" min='0' max='100'  value="0" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Logged In</label>
+            <input class="form-control" type="number" name="logged_in" placeholder="Enter your Logged In" min='0' max='100' value="0" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Num Compromised</label>
+            <input class="form-control" type="number" name="num_compromised" placeholder="Enter your Num Compromised" min='0' max='100'  value="0"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Root Shell</label>
+            <input class="form-control" type="number" name="root_shell" placeholder="Enter your Root Shell" min='0' max='100'  value="0"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Su Attempted</label>
+            <input class="form-control" type="number" name="su_attempted" placeholder="Enter your Su Attempted" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Num File Creations</label>
+            <input class="form-control" type="number" name="num_file_creations" placeholder="Enter your Num File Creations" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Num Shells</label>
+            <input class="form-control" type="number" name="num_shells" placeholder="Enter your Num Shells" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Num Access Files</label>
+            <input class="form-control" type="number" name="num_access_files" placeholder="Enter your Num Access Files" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Is Guest Login</label>
+            <input class="form-control" type="number" name="is_guest_login" placeholder="Enter your Is Guest Login" min='0' max='100'  value="0"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Count</label>
+            <input class="form-control" type="number" name="count" placeholder="Enter your Count" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Srv Count</label>
+            <input class="form-control" type="number" name="srv_count" placeholder="Enter your Srv Count" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Serror Rate</label>
+            <input class="form-control" type="number" name="serror_rate" placeholder="Enter your Serror Rate" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Rerror Rate</label>
+            <input class="form-control" type="number" name="rerror_rate" placeholder="Enter your Rerror Rate" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Same Srv Rate</label>
+            <input class="form-control" type="number" name="same_srv_rate" placeholder="Enter your Same Srv Rate" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Diff Srv Rate</label>
+            <input class="form-control" type="number" name="diff_srv_rate" placeholder="Enter your Diff Srv Rate" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Srv Diff Host Rate</label>
+            <input class="form-control" type="number" name="srv_diff_host_rate" placeholder="Enter your Srv Diff Host Rate" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Dst Host Count</label>
+            <input class="form-control" type="number" name="dst_host_count" placeholder="Enter your Dst Host Count" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Dst Host Srv Count</label>
+            <input class="form-control" type="number" name="dst_host_srv_count" placeholder="Enter your Dst Host Srv Count" min='0' max='100' value="0" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Dst Host Diff Srv Rate</label>
+            <input class="form-control" type="number" name="dst_host_diff_srv_rate" placeholder="Enter your Dst Host Diff Srv Rate" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Dst Host Same Src Port Rate</label>
+            <input class="form-control" type="number" name="dst_host_same_src_port_rate" placeholder="Enter your Dst Host Same Src Port Rate" min='0' max='100'  value="0"/>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Dst Host Srv Diff Host Rate</label>
+            <input class="form-control" type="number" name="dst_host_srv_diff_host_rate" placeholder="Enter your Dst Host Srv Diff Host Rate" min='0' max='100'  value="0"/>
+        </div>
+        
+
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Start Predicting" value="0" required />
+        </div>
+
+    </form>
+    <h2>
+        The prediction is: {{results}}
+    </h2>
+</div>
+
+</body>
+</html>

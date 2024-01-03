@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.login {
+  position: relative;
+  z-index: 1;
+  background: rgba(81, 161, 99, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 50px auto; 
+  max-width: 600px; 
+}
+
+.login h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login .mb-3 {
+  margin-bottom: 15px;
+}
+
+.login .form-label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: black;
+  font-weight: bold;
+}
+
+
+.login .form-control {
+  width: 100%; 
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(21, 183, 83, 0.2); 
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.login select.form-control {
+  appearance: none;
+  background-size: 8px 4px;
+  padding-right: 25px;
+}
+
+.login .btn {
+  background-color: #053518;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login h2 {
+  margin-top: 20px;
+  font-size: 18px;
+}
